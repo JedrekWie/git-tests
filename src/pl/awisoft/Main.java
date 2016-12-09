@@ -16,6 +16,7 @@ public class Main {
 		if(args.length > 0 && args[0] != null) {
 			tCount = Integer.parseInt(args[0]);
 		}
+		
 		executeTasks(tCount);
 		
 		System.out.println("All threads finished executing.");
