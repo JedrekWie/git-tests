@@ -1,8 +1,9 @@
 package pl.awisoft;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 
 public class Main {
 
@@ -11,8 +12,8 @@ public class Main {
 	public static void main(String[] args) {
 		System.out.println("This is enty point to the main app");
 		
-		List<Thread> threads = new ArrayList<>();
-
+		ExecutorService executor = Executors.newFixedThreadPool(10);
+		
 		for(int i = 0; i < 10; i++) {
 			// Lambda Runnable
 	        Runnable task = () -> {
@@ -28,18 +29,17 @@ public class Main {
 						+ sleep + ")");
 	        };
 	        
-	        Thread t = new Thread(task);
-	        threads.add(t);
-	        t.start();
+	        executor.submit(task);
 		}
 		
-		for(Thread t : threads) {
-			try {
-				t.join();
-			} catch (InterruptedException e) {
-				System.err.println("Failed joining thread " + t.getName());
-			}
+		executor.shutdown();
+		try {
+			executor.awaitTermination(Integer.MAX_VALUE, TimeUnit.HOURS);
+		} catch (InterruptedException e) {
+			System.err.println("Failed joining executors.");
 		}
+		
+		System.out.println("All threads finished executing.");
 	}
 
 }
