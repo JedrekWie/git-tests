@@ -12,7 +12,7 @@ public class Main {
 	public static void main(String[] args) {
 		System.out.println("This is enty point to the main app");
 		
-		execute();
+		executeTasks();
 		
 		System.out.println("All threads finished executing.");
 	}
@@ -20,7 +20,7 @@ public class Main {
 	/**
 	 * Executes threads
 	 */
-	private static void execute() {
+	private static void executeTasks() {
 		ExecutorService executor = Executors.newFixedThreadPool(10);
 		
 		for(int i = 0; i < 10; i++) {
