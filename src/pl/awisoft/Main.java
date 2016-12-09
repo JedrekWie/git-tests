@@ -12,6 +12,15 @@ public class Main {
 	public static void main(String[] args) {
 		System.out.println("This is enty point to the main app");
 		
+		execute();
+		
+		System.out.println("All threads finished executing.");
+	}
+
+	/**
+	 * Executes threads
+	 */
+	private static void execute() {
 		ExecutorService executor = Executors.newFixedThreadPool(10);
 		
 		for(int i = 0; i < 10; i++) {
@@ -38,8 +47,6 @@ public class Main {
 		} catch (InterruptedException e) {
 			System.err.println("Failed joining executors.");
 		}
-		
-		System.out.println("All threads finished executing.");
 	}
 
 }
