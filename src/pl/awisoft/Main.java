@@ -12,18 +12,23 @@ public class Main {
 	public static void main(String[] args) {
 		System.out.println("This is enty point to the main app");
 		
-		execute();
+		int tCount = 10;
+		if(args.length > 0 && args[0] != null) {
+			tCount = Integer.parseInt(args[0]);
+		}
+		execute(tCount);
 		
 		System.out.println("All threads finished executing.");
 	}
 
 	/**
 	 * Executes threads
+	 * @param tCount 
 	 */
-	private static void execute() {
-		ExecutorService executor = Executors.newFixedThreadPool(10);
+	private static void execute(int tCount) {
+		ExecutorService executor = Executors.newFixedThreadPool(tCount);
 		
-		for(int i = 0; i < 10; i++) {
+		for(int i = 0; i < tCount; i++) {
 			// Lambda Runnable
 	        Runnable task = () -> {
 	            String name = Thread.currentThread().getName();
