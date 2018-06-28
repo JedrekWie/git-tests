@@ -17,17 +17,16 @@ public class Main {
 			tCount = Integer.parseInt(args[0]);
 		}
 		
-		executeTasks(tCount);
+		execute(tCount);
 		
 		System.out.println("All threads finished executing.");
 	}
 
 	/**
 	 * Executes threads
+	 * @param tCount 
 	 */
-	private static void executeTasks(int tCount) {
-		System.out.println("Starting " + tCount + " threads.");
-		
+	private static void execute(int tCount) {
 		ExecutorService executor = Executors.newFixedThreadPool(tCount);
 		
 		for(int i = 0; i < tCount; i++) {
@@ -52,7 +51,7 @@ public class Main {
 		try {
 			executor.awaitTermination(Integer.MAX_VALUE, TimeUnit.HOURS);
 		} catch (InterruptedException e) {
-			System.err.println("Failed joining executors.");
+			System.err.println("Failed joining executors");
 		}
 	}
 
