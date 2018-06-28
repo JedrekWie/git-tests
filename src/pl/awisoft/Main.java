@@ -51,7 +51,7 @@ public class Main {
 		try {
 			executor.awaitTermination(Integer.MAX_VALUE, TimeUnit.HOURS);
 		} catch (InterruptedException e) {
-			System.err.println("Failed joining executors.");
+			System.err.println("Failed joining executors");
 		}
 	}
 
